@@ -4,7 +4,7 @@ const config = require('./config.json');
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}`);
-  client.user.setActivity(`On ${client.guilds.size});
+  client.user.setActivity(`On ${client.guilds.size}`);
 });
 
 client.on('message', async (message) => {
@@ -15,8 +15,14 @@ client.on('message', async (message) => {
   const command = args.shift().toLowerCase();
 
   if (command === 'ping') {
-    const m = await message.channel.send("Pinging...");
-    m.edit(`Pong! Latency: ${m.createdTimestamp - message.createdTimestamp}ms. API Latency: ${Math.round(client.ping)}ms`);
+    const pingm = await message.channel.send('Pinging...');
+    pingm.edit(`Pong! Latency: ${pingm.createdTimestamp - message.createdTimestamp}ms. API Latency: ${Math.round(client.ping)}ms`);
+  }
+
+  if(command === "say") {
+    const sayMessage = args.join(' ');
+    message.delete().catch(O_o=>{});
+    message.channel.send(sayMessage);
   }
 });
 
