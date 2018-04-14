@@ -24,6 +24,13 @@ client.on('message', async (message) => {
     message.delete().catch(O_o=>{});
     message.channel.send(sayMessage);
   }
+  
+  if (command === 'myavatar') {
+    const embed = new Discord.RichEmbed()
+    .setImage(message.author.avatarURL)
+    message.channel.send(embed)
+  }
+  
 });
 
 client.login(config.token);
